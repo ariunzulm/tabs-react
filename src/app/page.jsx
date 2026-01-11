@@ -78,6 +78,39 @@ const JobInfo = ({ tabsData }) => {
     </div>
   );
 };
+const JobInfos = ({ tabsData }) => {
+  const { id, button, role, date, description1, description2, description3 } =
+    tabsData;
+  return (
+    <div key={id}>
+      <div className="flex flex-col gap-3">
+        <h3 className="text-[#0f172a] text-[31.24px]">{role}</h3>
+        <button className="bg-gray-300 text-4 py-1.5 px-3 rounded-sm font-medium w-fit">
+          {button}
+        </button>
+        <p className="text-[#64748b] text-4">{date}</p>
+      </div>
+
+      <div className="text-[#334155] text-4 mt-8 gap-8 flex flex-col">
+        <div className="flex gap-5 items-center ">
+          <ChevronsRight />
+
+          <p className="w-175.25 leading-normal">{description1}</p>
+        </div>
+        <div className="flex gap-5 items-center ">
+          <ChevronsRight />
+
+          <p className="w-175.25 leading-normal">{description2}</p>
+        </div>
+        <div className="flex gap-5 items-center ">
+          <ChevronsRight />
+
+          <p className="w-175.25 leading-normal">{description3}</p>
+        </div>
+      </div>
+    </div>
+  );
+};
 
 const tabsData = [
   {
