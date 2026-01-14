@@ -9,45 +9,52 @@ export default function Home() {
     </div>
   );
 }
-const TabsTable = () => {
-  return (
-    <div className="w-254.25 p-10 flex justify-center shadow-xl gap-10">
-      <NavigationButtons />
-      <JobInfo tabsData={tabsData} />
-    </div>
-  );
-};
+// const TabsTable = () => {
+//   return (
+//     <div className="w-254.25 p-10 flex justify-center shadow-xl gap-10">
+//       <NavigationButtons />
+//       <JobInfo tabsData={tabsData} />
+//     </div>
+//   );
+// };
 
-const NavigationButtons = () => {
-  const [currentItem, setCurrentItem] = useState(tabsData);
+const TabsTable = () => {
+  const [value, setValue] = useState(0);
+  const currentJob = tabsData[value];
 
   return (
     <div className="w-50 flex justify-start flex-col gap-6 font-medium">
       <div className="flex gap-12">
         <div className="text-teal-500 text-2xl "> |</div>
-        <button className="text-shadow-gray-800 text-[13.3px] hover:text-teal-500 hover:ease-in-out cursor-pointer ">
-          TOMMY
-        </button>
-      </div>
-      <div className="flex gap-12">
-        <div className="text-teal-500 text-2xl "> |</div>
-        <button className="text-shadow-gray-800 text-[13.3px] hover:text-teal-500 hover:ease-in-out cursor-pointer ">
-          BIGDROP
-        </button>
-      </div>
-      <div className="flex gap-12">
-        <div className="text-teal-500 text-2xl "> |</div>
-        <button className="text-shadow-gray-800 text-[13.3px] hover:text-teal-500 hover:ease-in-out cursor-pointer ">
-          CUKER
-        </button>
+        <NavigationButtons tabs={tabsData} value={value} setValue={setValue} />
+        <JobInfo job={currentJob} />
       </div>
     </div>
   );
 };
 
-const JobInfo = ({ tabsData }) => {
+const NavigationButtons = ({ tabs, value, setValue }) => {
+  return (
+    <div className="w-50 flex justify-start flex-col gap-6 font-medium">
+      {tabs.map((item, index) => {
+        <div className="flex gap-12">
+          <div className="text-teal-500 text-2xl "> |</div>
+        </div>;
+        <button
+          onClick={() => setValue(index)}
+          className="text-shadow-gray-800 text-[13.3px] hover:text-teal-500 hover:ease-in-out cursor-pointer "
+        >
+          {item.button}
+        </button>;
+      })}
+    </div>
+  );
+};
+
+const JobInfo = ({ job }) => {
   const { id, button, role, date, description1, description2, description3 } =
-    tabsData;
+    job;
+  const descriptions = [description1, description2, description3];
   return (
     <div key={id}>
       <div className="flex flex-col gap-3">
@@ -62,50 +69,13 @@ const JobInfo = ({ tabsData }) => {
         <div className="flex gap-5 items-center ">
           <ChevronsRight />
 
-          <p className="w-175.25 leading-normal">{description1}</p>
-        </div>
-        <div className="flex gap-5 items-center ">
-          <ChevronsRight />
-
-          <p className="w-175.25 leading-normal">{description2}</p>
-        </div>
-        <div className="flex gap-5 items-center ">
-          <ChevronsRight />
-
-          <p className="w-175.25 leading-normal">{description3}</p>
-        </div>
-      </div>
-    </div>
-  );
-};
-const JobInfos = ({ tabsData }) => {
-  const { id, button, role, date, description1, description2, description3 } =
-    tabsData;
-  return (
-    <div key={id}>
-      <div className="flex flex-col gap-3">
-        <h3 className="text-[#0f172a] text-[31.24px]">{role}</h3>
-        <button className="bg-gray-300 text-4 py-1.5 px-3 rounded-sm font-medium w-fit">
-          {button}
-        </button>
-        <p className="text-[#64748b] text-4">{date}</p>
-      </div>
-
-      <div className="text-[#334155] text-4 mt-8 gap-8 flex flex-col">
-        <div className="flex gap-5 items-center ">
-          <ChevronsRight />
-
-          <p className="w-175.25 leading-normal">{description1}</p>
-        </div>
-        <div className="flex gap-5 items-center ">
-          <ChevronsRight />
-
-          <p className="w-175.25 leading-normal">{description2}</p>
-        </div>
-        <div className="flex gap-5 items-center ">
-          <ChevronsRight />
-
-          <p className="w-175.25 leading-normal">{description3}</p>
+          <p className="w-175.25 leading-normal">
+            {descriptions.map((description, index) => {
+              {
+                description;
+              }
+            })}
+          </p>
         </div>
       </div>
     </div>
